@@ -6,42 +6,303 @@
   <title>StudyOS</title>
 
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #080b18;
-      color: white;
-      text-align: center;
+      padding: 0;
+      box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, #173b9c55, transparent 30%),
+        radial-gradient(circle at 90% 80%, #4c1d9555, transparent 30%),
+        #050a1c;
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR */
     header {
-      padding: 25px;
-      background: #10152b;
-      border-bottom: 2px solid #4c6fff;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 7%;
+      border-bottom: 1px solid #1d3b80;
+      background: #050a1ce8;
+      backdrop-filter: blur(15px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: #38bdf8;
+      text-shadow: 0 0 20px #168cff;
+    }
+
+    .menu {
+      width: 45px;
+      height: 45px;
+      border: 1px solid #2854a5;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    .menu:hover {
+      transform: rotate(5deg) scale(1.08);
+      box-shadow: 0 0 25px #168cff88;
+    }
+
+    .menu div,
+    .menu div::before,
+    .menu div::after {
+      width: 22px;
+      height: 2px;
+      background: #b8d9ff;
+      content: "";
+      display: block;
+      position: relative;
+    }
+
+    .menu div::before {
+      position: absolute;
+      top: -7px;
+    }
+
+    .menu div::after {
+      position: absolute;
+      top: 7px;
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 100px 20px 60px;
+      position: relative;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 12px 25px;
+      border: 1px solid #168cff;
+      border-radius: 30px;
+      color: #8bdcff;
+      background: #0b1738aa;
+      box-shadow: 0 0 25px #168cff33;
+      animation: float 3s ease-in-out infinite;
     }
 
     h1 {
-      font-size: 48px;
-      margin: 20px 0 10px;
-      color: #4cc9ff;
-      text-shadow: 0 0 15px #4c6fff;
+      font-size: clamp(65px, 13vw, 140px);
+      margin: 45px 0 10px;
+      font-weight: 800;
+      letter-spacing: -6px;
+      background: linear-gradient(90deg, #fff, #55bfff, #7657ff);
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 40px #168cff55;
+      animation: glow 3s ease-in-out infinite alternate;
     }
 
-    p {
-      color: #b8c1e0;
-      font-size: 18px;
-    }
-
-    .button {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 15px 30px;
-      border-radius: 12px;
-      background: #4c6fff;
-      color: white;
-      text-decoration: none;
+    .subtitle {
+      font-size: clamp(25px, 4vw, 43px);
       font-weight: bold;
-      box-shadow: 0 0 20px #4c6fff;
+      margin-bottom: 25px;
+    }
+
+    .subtitle span {
+      color: #29b8ff;
+    }
+
+    .description {
+      max-width: 720px;
+      margin: auto;
+      color: #aebddd;
+      font-size: 19px;
+      line-height: 1.7;
+    }
+
+    /* BUTTON */
+    .start {
+      margin-top: 45px;
+      padding: 20px 55px;
+      border: none;
+      border-radius: 20px;
+      color: white;
+      font-size: 23px;
+      font-weight: bold;
+      cursor: pointer;
+      background: linear-gradient(90deg, #168cff, #6547ff);
+      box-shadow: 0 0 25px #168cff99;
+      transition: .3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .start:hover {
+      transform: translateY(-6px) scale(1.04);
+      box-shadow: 0 0 50px #168cff;
+    }
+
+    .start::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: #ffffff44;
+      transform: skewX(-25deg);
+      animation: shine 3s infinite;
+    }
+
+    /* FEATURES */
+    .features {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      padding: 30px 20px;
+      min-height: 190px;
+      text-align: center;
+      border: 1px solid #164a9c;
+      border-radius: 22px;
+      background: #07122dcc;
+      backdrop-filter: blur(12px);
+      transition: .35s;
+      animation: appear .8s ease both;
+    }
+
+    .card:hover {
+      transform: translateY(-12px);
+      border-color: #38bdf8;
+      box-shadow: 0 15px 40px #168cff44;
+    }
+
+    .icon {
+      font-size: 42px;
+      margin-bottom: 18px;
+      display: inline-block;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .card h2 {
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: #9fb2d8;
+      line-height: 1.5;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 80px 20px 40px;
+      color: #9db1d9;
+      letter-spacing: 4px;
+      font-size: 14px;
+    }
+
+    .line {
+      width: 500px;
+      max-width: 80%;
+      height: 1px;
+      margin: 0 auto 30px;
+      background: linear-gradient(90deg, transparent, #168cff, transparent);
+    }
+
+    /* ANIMATIONS */
+    @keyframes glow {
+      from {
+        filter: drop-shadow(0 0 5px #168cff);
+      }
+      to {
+        filter: drop-shadow(0 0 25px #168cff);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    @keyframes shine {
+      0% {
+        left: -100%;
+      }
+      50%, 100% {
+        left: 150%;
+      }
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* MOBILE */
+    @media (max-width: 800px) {
+      header {
+        padding: 0 25px;
+      }
+
+      .hero {
+        padding-top: 75px;
+      }
+
+      h1 {
+        letter-spacing: -3px;
+      }
+
+      .features {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .description {
+        font-size: 16px;
+      }
+
+      .start {
+        width: 90%;
+      }
     }
   </style>
 </head>
@@ -49,10 +310,79 @@
 <body>
 
   <header>
-    <h1>StudyOS</h1>
-    <p>Étudie. Progresse. Gagne des niveaux.</p>
-    <a href="#" class="button">Commencer</a>
+    <div class="logo">Study<span>OS</span></div>
+
+    <div class="menu">
+      <div></div>
+    </div>
   </header>
 
+  <main>
+
+    <section class="hero">
+
+      <div class="badge">
+        ✦ Ton espace d’apprentissage
+      </div>
+
+      <h1>StudyOS</h1>
+
+      <div class="subtitle">
+        Étudie. Progresse. Gagne des <span>niveaux.</span>
+      </div>
+
+      <p class="description">
+        StudyOS est ton espace pour mieux travailler.
+        Prends tes notes, organise tes tâches,
+        suis tes progrès et avance vers tes objectifs.
+      </p>
+
+      <button class="start" onclick="commencer()">
+        🚀 Commencer →
+      </button>
+
+    </section>
+
+    <section class="features">
+
+      <div class="card">
+        <div class="icon">📖</div>
+        <h2>Notes</h2>
+        <p>Capture tes idées et tes cours rapidement.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">✅</div>
+        <h2>Tâches</h2>
+        <p>Organise ton travail et reste productif.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📊</div>
+        <h2>Progrès</h2>
+        <p>Suis tes résultats et améliore-toi.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🔎</div>
+        <h2>Recherche</h2>
+        <p>Retrouve rapidement ce dont tu as besoin.</p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="line"></div>
+    ✦ PETITS EFFORTS — GRANDS RÉSULTATS ✦
+  </footer>
+
+  <script>
+    function commencer() {
+      alert("Bienvenue sur StudyOS 🚀");
+    }
+  </script>
+
 </body>
-</html>
+        </html>
